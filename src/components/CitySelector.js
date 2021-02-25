@@ -1,8 +1,16 @@
 import React, {useState} from 'react';
 import {Row, Col, FormControl, Button} from 'react-bootstrap';
 
-export default function CitySelector(){
+
+export default function CitySelector({onSearch}){
     const [city, setCity] = useState('');
+
+    function onKeyDown(event){
+        if (event.keyCode === 13) {
+            onSearch();
+        }
+    }
+
     return (
         <>
             <Row>
@@ -16,6 +24,7 @@ export default function CitySelector(){
                         placeholder="Enter city name"
                         onChange={(event) => setCity(event.target.value)}
                         value={city}
+                        onKeyDown={onKeyDown}
                     />
                 </Col>
             </Row>
