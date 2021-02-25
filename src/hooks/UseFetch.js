@@ -6,21 +6,30 @@ export default function useFetch(initialUrl){
     const [isLoading, setIsLoading] = useState(null);
     const [url, setUrl] = useState(initialUrl);
 
-    useEffect(() => {
+  useEffect(() => {
+    if(!url) return;
+    setIsLoading(true);
+    // clear old search
+    setData(null);
+    setError(null);
 
-        setIsLoading(true);
-    
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+
+            // error handling for nonexistent data
             setIsLoading(false);
+            if(data.cod >= 400) {
+                setError(data.message);
+                return;
+            }
             setData(data);
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             setIsLoading(false);
             setError(error);
-          });
-      }, [url]);
-    
-    return { data, error, isLoading, setUrl };
+        });
+    }, [url]);
+
+  return { data, error, isLoading, setUrl };
 }
