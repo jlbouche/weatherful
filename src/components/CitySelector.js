@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Row, Col, FormControl, Button} from 'react-bootstrap';
 
-const CitySelector = ({onSearch}) => {
+export default function CitySelector({onSearch}){
     const [city, setCity] = useState('');
 
     function onKeyDown(event){
@@ -31,12 +31,9 @@ const CitySelector = ({onSearch}) => {
 
         <Row>
           <Col>
-           {/* don't forget to edit our function  */}
             <Button onClick={() => onSearch(city)}>Check Weather</Button>
           </Col>
         </Row>
       </>
     );
   };
-
-export default CitySelector;

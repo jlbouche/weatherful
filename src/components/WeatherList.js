@@ -12,8 +12,8 @@ export default function WeatherList({weathers}){
                     temp_min={main.temp_min} 
                     dt={dt * 1000} 
                     main={weather[0].main} 
-                    icon={weather[0].icon} 
-                  />
+                    icon={weather[0].icon}
+                    />
                 </Col>
             ))} 
         </Row>
